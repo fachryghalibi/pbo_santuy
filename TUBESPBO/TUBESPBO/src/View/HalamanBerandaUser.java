@@ -46,6 +46,7 @@ public class HalamanBerandaUser extends javax.swing.JFrame {
         AlamatDisplay = new javax.swing.JLabel();
         UbahPasswordBTN = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -112,7 +113,7 @@ public class HalamanBerandaUser extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addContainerGap(229, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Beranda", jPanel2);
@@ -139,6 +140,8 @@ public class HalamanBerandaUser extends javax.swing.JFrame {
 
         jButton1.setText("Ubah Alamat");
 
+        jButton2.setText("Logout");
+
         javax.swing.GroupLayout UbahAlamatBTNLayout = new javax.swing.GroupLayout(UbahAlamatBTN);
         UbahAlamatBTN.setLayout(UbahAlamatBTNLayout);
         UbahAlamatBTNLayout.setHorizontalGroup(
@@ -162,8 +165,11 @@ public class HalamanBerandaUser extends javax.swing.JFrame {
                                     .addComponent(PasswordDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
                                     .addComponent(NamaDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(AlamatDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jButton1))))
-                .addContainerGap(424, Short.MAX_VALUE))
+                            .addGroup(UbahAlamatBTNLayout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2)))))
+                .addGap(65, 65, 65))
         );
         UbahAlamatBTNLayout.setVerticalGroup(
             UbahAlamatBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,8 +191,10 @@ public class HalamanBerandaUser extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(AlamatDisplay))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addGroup(UbahAlamatBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Profil", UbahAlamatBTN);
@@ -237,7 +245,7 @@ public class HalamanBerandaUser extends javax.swing.JFrame {
                     .addComponent(CariBTN))
                 .addGap(46, 46, 46)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Booking", jPanel1);
@@ -276,7 +284,7 @@ public class HalamanBerandaUser extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addContainerGap(313, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Riwayat Booking", jPanel3);
@@ -289,7 +297,7 @@ public class HalamanBerandaUser extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
         );
 
         pack();
@@ -342,6 +350,7 @@ public class HalamanBerandaUser extends javax.swing.JFrame {
     private javax.swing.JPanel UbahAlamatBTN;
     private javax.swing.JButton UbahPasswordBTN;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
