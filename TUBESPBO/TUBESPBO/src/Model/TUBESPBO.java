@@ -10,11 +10,15 @@ package Model;
  * @author FACHRUDDIN GHALIBI
  */
 import View.Login;
+import View.Register;
 import java.util.Scanner;
 
 public class TUBESPBO {
     public static void main(String[] args) {
         Login newLogin = new Login();
         newLogin.setVisible(true);
+        
+//        Register newRegister = new Register();
+//        newRegister.setVisible(true);
     }
 }
