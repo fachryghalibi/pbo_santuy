@@ -14,14 +14,13 @@ public abstract class Akun {
     private String password;
     private String nama;
     private String no_hp;
-    private String role;
 
-    public Akun(String username, String password, String nama, String no_hp, String role) {
+
+    public Akun(String username, String password, String nama, String no_hp) {
         this.username = username;
         this.password = password;
         this.nama = nama;
         this.no_hp = no_hp;
-        this.role = role;
     }
 
     public String getUsername() {
@@ -40,9 +39,7 @@ public abstract class Akun {
         return no_hp;
     }
 
-    public String getRole() {
-        return role;
-    }
+
 
     public void setUsername(String username) {
         this.username = username;
@@ -60,9 +57,6 @@ public abstract class Akun {
         this.no_hp = no_hp;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
     
     
 

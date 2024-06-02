@@ -5,15 +5,13 @@ public class Users extends Akun {
     private String password;
     private String nama;
     private String no_hp;
-    private String role;
 
-    public Users(String username, String password, String nama, String no_hp, String role) {
-        super(username, password, nama, no_hp, role);
+    public Users(String username, String password, String nama, String no_hp) {
+        super(username, password, nama, no_hp);
         this.username = username;
         this.password = password;
         this.nama = nama;
         this.no_hp = no_hp;
-        this.role = role;
     }
 
     public String getUsername() {
@@ -48,12 +46,6 @@ public class Users extends Akun {
         this.no_hp = no_hp;
     }
 
-    public String getRole() {
-        return role;
-    }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
 }
 
