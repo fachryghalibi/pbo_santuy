@@ -19,7 +19,7 @@ public class loginController implements login {
     }
 
     public void login(String username, String password) {
-        String userSQL = "SELECT * FROM akun WHERE username = ? AND password = ?";
+        String userSQL = "SELECT * FROM users WHERE username = ? AND password = ?";
         String adminSQL = "SELECT * FROM admin WHERE username = ? AND password = ?";
 
         try (Connection con = db_connection.getConnection();
