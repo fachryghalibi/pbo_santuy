@@ -3,6 +3,7 @@ package Controller;
 import Helper.db_connection;
 import Model.login;
 import View.Beranda;
+import View.HalamanBerandaUser;
 import View.Login;
 import View.menuAdmin;
 import java.sql.Connection;
@@ -30,7 +31,7 @@ public class loginController implements login {
             userStmt.setString(2, password);
             try (ResultSet userRs = userStmt.executeQuery()) {
                 if (userRs.next()) {
-                    Beranda newBeranda = new Beranda();
+                    HalamanBerandaUser newBeranda = new HalamanBerandaUser();
                     newBeranda.setVisible(true);
                     this.asLogin.dispose();
                     return;
