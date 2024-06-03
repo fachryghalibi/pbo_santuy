@@ -34,6 +34,22 @@ public class akunController {
         } return false;
     }
     
+    public boolean updateAkun(String username, String password, String nama, String no_hp, String role) {
+    String sql = "UPDATE users SET password = ? and nama = ? and no_hp = ? WHERE id_akun = ?";
+    try (Connection con = db_connection.getConnection();
+        PreparedStatement pstmt = con.prepareStatement(sql)) {
+        pstmt.setString(1, password);
+        pstmt.setString(2, nama);
+        pstmt.setString(3, no_hp);
+        pstmt.setString(4, username);
+        pstmt.executeUpdate();
+        return true;
+    } catch (SQLException e) {
+        Logger.getLogger(akunController.class.getName()).log(Level.SEVERE, "Error updating data", e);
+    }
+        return false;
+    }
+    
     
 }
 
