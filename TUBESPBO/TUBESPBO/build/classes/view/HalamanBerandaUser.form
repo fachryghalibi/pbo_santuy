@@ -162,6 +162,7 @@
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
+                    <Property name="text" type="java.lang.String" value="Lorem Ipsum is simply dummy text of the printing and &#xa;typesetting industry. Lorem Ipsum has been the industry&apos;s &#xa;standard dummy text ever since the 1500s, ]&#xa;when an unknown printer took a galley of type and scrambled &#xa;it to make a type specimen book. It has survived not only &#xa;five centuries, but also the leap into electronic typesetting,&#xa;remaining essentially unchanged. It was popularised in the 1960s &#xa;with the release of Letraset sheets containing Lorem Ipsum &#xa;passages, and more recently with desktop publishing software &#xa;like Aldus PageMaker including versions of Lorem Ipsum."/>
                   </Properties>
                   <Events>
                     <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jTextArea1AncestorAdded"/>

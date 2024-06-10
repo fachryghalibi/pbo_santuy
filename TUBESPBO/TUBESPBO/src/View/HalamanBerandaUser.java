@@ -154,6 +154,7 @@ public class HalamanBerandaUser extends javax.swing.JFrame {
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.setText("Lorem Ipsum is simply dummy text of the printing and \ntypesetting industry. Lorem Ipsum has been the industry's \nstandard dummy text ever since the 1500s, ]\nwhen an unknown printer took a galley of type and scrambled \nit to make a type specimen book. It has survived not only \nfive centuries, but also the leap into electronic typesetting,\nremaining essentially unchanged. It was popularised in the 1960s \nwith the release of Letraset sheets containing Lorem Ipsum \npassages, and more recently with desktop publishing software \nlike Aldus PageMaker including versions of Lorem Ipsum.");
         jTextArea1.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
