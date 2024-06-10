@@ -4,6 +4,11 @@
  */
 package View;
 
+import Controller.bookingController;
+import Model.BookingJadwal;
+import Model.loginSession;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author fadla
@@ -13,8 +18,12 @@ public class PermintaanBooking extends javax.swing.JFrame {
     /**
      * Creates new form PermintaanBooking
      */
+    private bookingController bkgCTRL;
+
     public PermintaanBooking() {
         initComponents();
+        bkgCTRL = new bookingController();
+
     }
 
     /**
@@ -26,21 +35,182 @@ public class PermintaanBooking extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
+        jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
+        jRadioButtonMenuItem3 = new javax.swing.JRadioButtonMenuItem();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        pilihanDokter = new javax.swing.JComboBox<>();
+        pilihanJam = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        pilihantanggal = new javax.swing.JTextField();
+        submitBooking = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        namaPasien1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+
+        jRadioButtonMenuItem1.setSelected(true);
+        jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
+
+        jRadioButtonMenuItem2.setSelected(true);
+        jRadioButtonMenuItem2.setText("jRadioButtonMenuItem2");
+
+        jRadioButtonMenuItem3.setSelected(true);
+        jRadioButtonMenuItem3.setText("jRadioButtonMenuItem3");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Jam");
+
+        jLabel2.setText("Tanggal (dd-mm-yyyy)");
+
+        pilihanDokter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "dr.supriyadi", "dr.burhan" }));
+        pilihanDokter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pilihanDokterActionPerformed(evt);
+            }
+        });
+
+        pilihanJam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "09:00", "12:00", "13:00", "15:00" }));
+        pilihanJam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pilihanJamActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Dokter");
+
+        pilihantanggal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pilihantanggalActionPerformed(evt);
+            }
+        });
+
+        submitBooking.setText("booking");
+        submitBooking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitBookingActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Nama Pasien");
+
+        namaPasien1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                namaPasien1ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 436, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(52, 52, 52)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(submitBooking)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(pilihanDokter, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pilihanJam, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pilihantanggal)
+                        .addComponent(namaPasien1)))
+                .addGap(121, 121, 121))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 368, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(namaPasien1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(pilihantanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pilihanJam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(pilihanDokter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(65, 65, 65)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(submitBooking)
+                    .addComponent(jButton1))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void pilihanDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pilihanDokterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pilihanDokterActionPerformed
+
+    private void pilihanJamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pilihanJamActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pilihanJamActionPerformed
+
+    private void pilihantanggalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pilihantanggalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pilihantanggalActionPerformed
+
+    private void submitBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBookingActionPerformed
+    String namaPasien = namaPasien1.getText();
+    String tanggalBooking = pilihantanggal.getText();
+    String waktuBooking = (String) pilihanJam.getSelectedItem();
+    String namaDokter = (String) pilihanDokter.getSelectedItem();
+    String status = "Booking";
+    
+    if (namaPasien.isEmpty() || tanggalBooking.isEmpty() || waktuBooking.isEmpty() || namaDokter.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Harap lengkapi semua kolom");
+        return;
+    }
+    boolean Status = bkgCTRL.bookingJadwal(loginSession.getId_user(), namaPasien, tanggalBooking, waktuBooking, namaDokter, status);
+    
+    if (Status){
+        JOptionPane.showMessageDialog(null, "Berhasil Booking Jadwal");
+        HalamanBerandaUser newBeranda = new HalamanBerandaUser();
+        newBeranda.setVisible(true);
+        this.dispose();
+    }else{
+        JOptionPane.showMessageDialog(null, "gagal Booking");
+    }
+    }//GEN-LAST:event_submitBookingActionPerformed
+
+    private void namaPasien1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaPasien1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_namaPasien1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.setVisible(false);
+        new HalamanBerandaUser().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +248,19 @@ public class PermintaanBooking extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem3;
+    private javax.swing.JTextField namaPasien1;
+    private javax.swing.JComboBox<String> pilihanDokter;
+    private javax.swing.JComboBox<String> pilihanJam;
+    private javax.swing.JTextField pilihantanggal;
+    private javax.swing.JButton submitBooking;
     // End of variables declaration//GEN-END:variables
 }

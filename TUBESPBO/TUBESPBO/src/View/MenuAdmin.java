@@ -5,6 +5,13 @@
  */
 package View;
 
+import Controller.bookingController;
+import Model.BookingJadwal;
+import Model.loginSession;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author FACHRUDDIN GHALIBI
@@ -14,8 +21,31 @@ public class MenuAdmin extends javax.swing.JFrame {
     /**
      * Creates new form menuAdmin
      */
+    private DefaultTableModel modelTableBooking;
+    private bookingController bkgCtrl;
     public MenuAdmin() {
+        
         initComponents();
+        bkgCtrl = new bookingController();
+        String[] judulTabel = {"id", "namaPasien", "waktuBooking", "tanggalBooking", "namaDokter", "status"};
+        modelTableBooking = new DefaultTableModel(judulTabel, 0);
+        tabelbooking.setModel(modelTableBooking);
+        loadDataBooking();
+    }
+    public void loadDataBooking(){
+        List<BookingJadwal> dataBooking = bkgCtrl.getAllBookingJadwal();
+        for (BookingJadwal data:dataBooking){
+            Object[] rowData = {
+            data.getId_booking(), 
+            data.getNamaPasien(),
+            data.getWaktuBooking(),
+            data.getTanggalBooking(),
+            data.getNamaDokter(),
+            data.getStatus()
+            };
+            modelTableBooking.addRow(rowData);
+            
+        }
     }
 
     /**
@@ -28,17 +58,54 @@ public class MenuAdmin extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelbooking = new javax.swing.JTable();
+        refreshAdmin = new javax.swing.JButton();
+        logoutbtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Menu Admin");
 
-        jButton1.setText("Update Informasi Kesehatan");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        tabelbooking.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tabelbooking.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tabelbookingAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        tabelbooking.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelbookingMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabelbooking);
+
+        refreshAdmin.setText("Refresh");
+        refreshAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                refreshAdminActionPerformed(evt);
+            }
+        });
+
+        logoutbtn.setText("Logout");
+        logoutbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutbtnActionPerformed(evt);
             }
         });
 
@@ -46,32 +113,80 @@ public class MenuAdmin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(197, 197, 197)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jButton1)))
-                .addContainerGap(225, Short.MAX_VALUE))
+                        .addGap(123, 123, 123)
+                        .addComponent(refreshAdmin)
+                        .addGap(126, 126, 126)
+                        .addComponent(logoutbtn)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(44, 44, 44)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(306, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(refreshAdmin)
+                    .addComponent(logoutbtn))
+                .addContainerGap(269, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void tabelbookingAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tabelbookingAncestorAdded
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_tabelbookingAncestorAdded
+
+    private void tabelbookingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelbookingMouseClicked
+        int selectedRow = tabelbooking.getSelectedRow();
+        if (selectedRow != -1) {
+            int id_Booking = (int) modelTableBooking.getValueAt(selectedRow, 0);
+            String namaPasien = modelTableBooking.getValueAt(selectedRow, 1).toString();
+            String waktuBooking = modelTableBooking.getValueAt(selectedRow, 2).toString();
+            String tanggalBooking = modelTableBooking.getValueAt(selectedRow, 3).toString();
+            String namaDokter = modelTableBooking.getValueAt(selectedRow, 4).toString();
+            String status = modelTableBooking.getValueAt(selectedRow, 5).toString();
+            
+            detailBooking databooking = new detailBooking();
+            databooking.detailBooking(id_Booking, namaPasien, waktuBooking, tanggalBooking, namaDokter, status);
+            databooking.setVisible(true);
+            
+
+        }
+    }//GEN-LAST:event_tabelbookingMouseClicked
+
+    private void refreshAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshAdminActionPerformed
+        tabelbooking.removeAll();
+        int rows = modelTableBooking.getRowCount();
+        for (int i = rows - 1; i >= 0; i--){
+            modelTableBooking.removeRow(i);
+        }
+        loadDataBooking();
+    }//GEN-LAST:event_refreshAdminActionPerformed
+
+    private void logoutbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutbtnActionPerformed
+        int response = JOptionPane.showConfirmDialog(this, "Apakah Anda yakin ingin logout?", "Konfirmasi Logout",
+        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+    
+    if (response == JOptionPane.YES_OPTION) {
+        loginSession.clearSession();
+
+        Login loginWindow = new Login();
+        loginWindow.setVisible(true);
+
+        this.dispose();
+    }
+    }//GEN-LAST:event_logoutbtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -110,7 +225,10 @@ public class MenuAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton logoutbtn;
+    private javax.swing.JButton refreshAdmin;
+    private javax.swing.JTable tabelbooking;
     // End of variables declaration//GEN-END:variables
 }

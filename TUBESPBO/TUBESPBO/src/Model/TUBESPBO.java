@@ -17,8 +17,5 @@ public class TUBESPBO {
     public static void main(String[] args) {
         Login newLogin = new Login();
         newLogin.setVisible(true);
-        
-//        Register newRegister = new Register();
-//        newRegister.setVisible(true);
     }
 }

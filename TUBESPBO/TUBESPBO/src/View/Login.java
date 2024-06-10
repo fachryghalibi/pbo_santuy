@@ -10,7 +10,7 @@ import Controller.loginController;
 
 /**
  *
- * @author naufalammar
+ * @author FACHRUDDIN GHALIBI
  */
 public class Login extends javax.swing.JFrame {
 

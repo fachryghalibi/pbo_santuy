@@ -5,25 +5,74 @@
  */
 package View;
 
+import Controller.bookingController;
+import Model.BookingJadwal;
 import Model.loginSession;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author naufalammar
+ * @author Fachruddin Ghalibi
  */
 public class HalamanBerandaUser extends javax.swing.JFrame {
 
     /**
      * Creates new form HalamanLoginUser
      */
+    private DefaultTableModel modelTableBooking, modelRiwayatBooking;
+    private bookingController bkgCtrl;
+    
     public HalamanBerandaUser() {
         initComponents();
+        bkgCtrl = new bookingController();
         nama1.setText(loginSession.getNama());
         username1.setText(loginSession.getUsername());
         password1.setText(loginSession.getPassword());
         no_hp1.setText(loginSession.getNo_hp());
+        
+        String[] judulTabel = {"id", "namaPasien", "waktuBooking", "tanggalBooking", "namaDokter", "status"};
+        modelTableBooking = new DefaultTableModel(judulTabel, 0);
+        booking.setModel(modelTableBooking);
+        loadDataBooking(loginSession.getId_user(), "Booking");
 
+        
+        modelRiwayatBooking = new DefaultTableModel(judulTabel, 0);
+        tabelRiwayatBooking.setModel(modelRiwayatBooking);
+        loadAllDataBooking(loginSession.getId_user());
 
+    }
+    
+        public void loadDataBooking(int id_User, String Status){
+        List<BookingJadwal> dataBooking = bkgCtrl.getAllBookingJadwalbyIDUser(id_User, Status);
+        for (BookingJadwal data:dataBooking){
+            Object[] rowData = {
+            data.getId_booking(), 
+            data.getNamaPasien(),
+            data.getWaktuBooking(),
+            data.getTanggalBooking(),
+            data.getNamaDokter(),
+            data.getStatus()
+            };
+            modelTableBooking.addRow(rowData);
+            
+        }
+    }
+        public void loadAllDataBooking(int id_User){
+        List<BookingJadwal> dataBooking = bkgCtrl.getAllBookingJadwalbyIDUser(id_User);
+        for (BookingJadwal data:dataBooking){
+            Object[] rowData = {
+            data.getId_booking(), 
+            data.getNamaPasien(),
+            data.getWaktuBooking(),
+            data.getTanggalBooking(),
+            data.getNamaDokter(),
+            data.getStatus()
+            };
+            modelRiwayatBooking.addRow(rowData);
+            
+        }
     }
 
     /**
@@ -38,6 +87,9 @@ public class HalamanBerandaUser extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -54,6 +106,15 @@ public class HalamanBerandaUser extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        logoutBtn = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        booking = new javax.swing.JTable();
+        refreshBooking = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabelRiwayatBooking = new javax.swing.JTable();
+        refreshBtn = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -68,7 +129,21 @@ public class HalamanBerandaUser extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jMenuItem1.setText("jMenuItem1");
+
+        jMenuItem2.setText("jMenuItem2");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTabbedPane1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTabbedPane1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 36)); // NOI18N
         jLabel2.setText("SELAMAT DATANG");
@@ -90,7 +165,7 @@ public class HalamanBerandaUser extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(jTextArea1);
 
-        btn_booking.setText("Booking");
+        btn_booking.setText("Booking Jadwal Konsultasi??");
         btn_booking.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_bookingActionPerformed(evt);
@@ -106,28 +181,29 @@ public class HalamanBerandaUser extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addContainerGap(458, Short.MAX_VALUE))
+                            .addComponent(jLabel1)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
-                        .addComponent(btn_booking, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82))))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
+                        .addComponent(btn_booking, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel2)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btn_booking, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(49, 49, 49)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addComponent(btn_booking, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
@@ -141,6 +217,13 @@ public class HalamanBerandaUser extends javax.swing.JFrame {
 
         jLabel6.setText("Nomor Handphone");
 
+        logoutBtn.setText("Log Out");
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -148,16 +231,19 @@ public class HalamanBerandaUser extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addGap(66, 66, 66)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(no_hp1)
-                    .addComponent(nama1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(username1, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                    .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(logoutBtn)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(66, 66, 66)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(no_hp1)
+                            .addComponent(nama1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(username1, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                            .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(415, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -179,10 +265,103 @@ public class HalamanBerandaUser extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(no_hp1)
                     .addComponent(jLabel6))
-                .addContainerGap(316, Short.MAX_VALUE))
+                .addGap(57, 57, 57)
+                .addComponent(logoutBtn)
+                .addContainerGap(236, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Profile", jPanel1);
+
+        booking.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(booking);
+
+        refreshBooking.setText("Refresh");
+        refreshBooking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshBookingActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(refreshBooking)
+                .addContainerGap(369, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(refreshBooking)))
+                .addContainerGap(40, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Booking Anda", jPanel3);
+
+        tabelRiwayatBooking.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tabelRiwayatBooking);
+
+        refreshBtn.setText("Refresh");
+        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(refreshBtn)
+                .addGap(0, 291, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(refreshBtn)))
+                .addContainerGap(337, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Riwayat Booking", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -207,6 +386,42 @@ public class HalamanBerandaUser extends javax.swing.JFrame {
         permintaanBooking.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_bookingActionPerformed
+
+    private void jTabbedPane1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTabbedPane1AncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTabbedPane1AncestorAdded
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+    int response = JOptionPane.showConfirmDialog(this, "Apakah Anda yakin ingin logout?", "Konfirmasi Logout",
+        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+    
+    if (response == JOptionPane.YES_OPTION) {
+        loginSession.clearSession();
+
+        Login loginWindow = new Login();
+        loginWindow.setVisible(true);
+
+        this.dispose();
+    }
+    }//GEN-LAST:event_logoutBtnActionPerformed
+
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+        tabelRiwayatBooking.removeAll();
+        int rows = modelRiwayatBooking.getRowCount();
+        for (int i = rows - 1; i >= 0; i--){
+            modelRiwayatBooking.removeRow(i);
+        }
+        loadAllDataBooking(loginSession.getId_user());
+    }//GEN-LAST:event_refreshBtnActionPerformed
+
+    private void refreshBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBookingActionPerformed
+        booking.removeAll();
+        int rows = modelTableBooking.getRowCount();
+        for (int i = rows - 1; i >= 0; i--){
+            modelTableBooking.removeRow(i);
+        }
+        loadDataBooking(loginSession.getId_user(), "Booking");
+    }//GEN-LAST:event_refreshBookingActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,6 +460,7 @@ public class HalamanBerandaUser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable booking;
     private javax.swing.JButton btn_booking;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -252,17 +468,28 @@ public class HalamanBerandaUser extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton logoutBtn;
     private javax.swing.JLabel nama1;
     private javax.swing.JLabel no_hp1;
     private javax.swing.JLabel password1;
+    private javax.swing.JButton refreshBooking;
+    private javax.swing.JButton refreshBtn;
+    private javax.swing.JTable tabelRiwayatBooking;
     private javax.swing.JLabel username1;
     // End of variables declaration//GEN-END:variables
 }
