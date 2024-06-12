@@ -80,12 +80,12 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         ));
         tabelbooking.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 tabelbookingAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         tabelbooking.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -140,7 +140,7 @@ public class MenuAdmin extends javax.swing.JFrame {
                         .addComponent(refreshAdmin)
                         .addGap(28, 28, 28)
                         .addComponent(logoutbtn)))
-                .addContainerGap(300, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();

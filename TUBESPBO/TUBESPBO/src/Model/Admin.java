@@ -25,34 +25,42 @@ public class Admin extends Akun {
 
     }
 
+    @Override
     public String getUsername() {
         return username;
     }
 
+    @Override
     public void setUsername(String username) {
         this.username = username;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }
 
+    @Override
     public void setPassword(String password) {
         this.password = password;
     }
 
+    @Override
     public String getNama() {
         return nama;
     }
 
+    @Override
     public void setNama(String nama) {
         this.nama = nama;
     }
 
+    @Override
     public String getNo_hp() {
         return no_hp;
     }
 
+    @Override
     public void setNo_hp(String no_hp) {
         this.no_hp = no_hp;
     }

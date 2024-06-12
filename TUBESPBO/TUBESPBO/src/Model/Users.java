@@ -25,7 +25,8 @@ public class Users extends Akun {
         this.no_hp = no_hp;
     }
 
-    public String getUsername() {
+    @Override
+        public String getUsername() {
         return username;
     }
 
